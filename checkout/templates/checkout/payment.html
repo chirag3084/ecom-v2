@@ -1,0 +1,39 @@
+<!-- templates/payment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Razorpay Integration</title>
+</head>
+<body>
+    <h2>Payable Amount: {{ amount }} Paise</h2>
+    <button id="rzp-button1">Pay with Razorpay</button>
+
+    <!-- Razorpay Checkout script -->
+    <script src="https://razorpay.com"></script>
+    <script>
+    var options = {
+        "key": "{{ razorpay_merchant_key }}", 
+        "amount": "{{ amount }}", 
+        "currency": "{{ currency }}",
+        "name": "Your Company Name",
+        "description": "Test Transaction",
+        "order_id": "{{ razorpay_order_id }}", 
+        "callback_url": "http://127.0.0", // Your Django redirect URL
+        "prefill": {
+            "name": "John Doe",
+            "email": "johndoe@example.com",
+            "contact": "9999999999"
+        },
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    document.getElementById('rzp-button1').onclick = function(e){
+        rzp1.open();
+        e.preventDefault();
+    }
+    </script>
+</body>
+</html>

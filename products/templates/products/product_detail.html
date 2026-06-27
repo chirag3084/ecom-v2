@@ -1,0 +1,30 @@
+{% extends 'products/base.html' %}
+
+{% block title %}{{ product.name }} - E-com{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+  <div class="col-md-5">
+    {% if product.mainimage %}
+      <img src="{{ product.mainimage.url }}" class="img-fluid rounded shadow-sm" alt="{{ product.name }}">
+    {% else %}
+      <div class="d-flex align-items-center justify-content-center bg-light rounded shadow-sm" style="height: 320px;">
+        <span class="text-muted">No image available</span>
+      </div>
+    {% endif %}
+  </div>
+  <div class="col-md-7">
+    <h1 class="h3">{{ product.name }}</h1>
+    {% if product.category %}
+      <span class="badge bg-secondary mb-2">{{ product.category.title }}</span>
+    {% endif %}
+    <p class="text-muted">{{ product.preview_text }}</p>
+    <p>{{ product.detail_text }}</p>
+    <div class="h4 text-primary mb-3">${{ product.price }}</div>
+    <form method="post" action="{% url 'cart:add' product.slug %}">
+      {% csrf_token %}
+      <button class="btn btn-primary">Add to Cart</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

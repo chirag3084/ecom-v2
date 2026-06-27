@@ -1,0 +1,13 @@
+Django==6.0.6
+djangorestframework==3.17.1
+drf-spectacular==0.29.0
+django-allauth==65.18.0
+django-crispy-forms==2.6
+crispy-bootstrap5==2026.3
+django-filter==25.2
+celery==5.6.3
+redis==8.0.1
+python-dotenv==1.2.2
+psycopg2-binary==2.9.12
+razorpay==2.0.1
+Pillow==12.2.0
